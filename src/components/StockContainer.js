@@ -8,9 +8,10 @@ function StockContainer( {stocks, onBuyStock, onSellStock} ) {
       {stocks.map((stock) => (
         <Stock 
             key={stock.id} 
-            onBuyStock={onBuyStock} 
-            onSellStock={onSellStock}
-            stock={stock}/>
+            onBuyStock={onBuyStock}
+            onSellStock={onSellStock} 
+            stock={stock}
+            location={"stocks"}/>
       ))}
     </div>
   );

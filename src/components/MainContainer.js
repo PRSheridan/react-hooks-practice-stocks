@@ -13,17 +13,19 @@ function MainContainer() {
       .then((stockData) => setStocks(stockData))
   }, [])
 
-  function handleBuyStock(event) {
-    event.preventDefault()
-    console.log(event.target.value)
-    event.target.classList.remove("not-bought")
-    event.target.classList.add("bought")
-    //const newStock = stocks.filter((stock) => stock.id === e.target.value)
-    //setPortfolio([...portfolio, ])
+  //having two functions here is arbitrary but it's fine :,)
+  function handleBuyStock(id) {
+    console.log("")
+    const newPortfolioStock = stocks.filter((stock) => stock.id === id)
+    setPortfolio([...portfolio, newPortfolioStock[0]])
+    setStocks([...stocks].filter((stock) => stock.id !== id))
   }
 
-  function handleSellStock(event) {
-    event.target.className="not-bought"
+  function handleSellStock(id) {
+    console.log("")
+    const newStock = portfolio.filter((stock) => stock.id === id)
+    setStocks([...stocks, newStock[0]])
+    setPortfolio([...portfolio].filter((stock) => stock.id !== id))
   }
 
   return (
@@ -37,7 +39,10 @@ function MainContainer() {
               onSellStock={handleSellStock}/>
         </div>
         <div className="col-4">
-          <PortfolioContainer portfolio={portfolio}/>
+          <PortfolioContainer 
+              portfolio={portfolio}
+              onBuyStock={handleBuyStock}
+              onSellStock={handleSellStock}/>
         </div>
       </div>
     </div>
