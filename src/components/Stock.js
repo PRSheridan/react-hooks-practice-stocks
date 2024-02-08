@@ -4,15 +4,8 @@ function Stock( {stock, onBuyStock, onSellStock, location} ) {
 
   function handleClick(event) {
     event.preventDefault()
-    if (location === "stocks") {
-      console.log(stock.name)
-      console.log("buy")
-      onBuyStock(stock.id)
-    } else {
-      console.log(stock.name)
-      console.log("sell")
-      onSellStock(stock.id)
-    }
+    if (location === "stocks") { onBuyStock(stock.id) } 
+    else { onSellStock(stock.id) }
   }
 
   return (
