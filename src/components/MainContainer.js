@@ -28,9 +28,21 @@ function MainContainer() {
     setPortfolio([...portfolio].filter((stock) => stock.id !== id))
   }
 
+  function handleSortChange(event) {
+    console.log(event.target.value)
+    //sort em
+  }
+
+  function handleFilterChange(event) {
+    console.log(event.target.value)
+    //filter em
+  }
+
   return (
     <div>
-      <SearchBar />
+      <SearchBar 
+          onSortChange={handleSortChange}
+          onFilterChange={handleFilterChange}/>
       <div className="row">
         <div className="col-8">
           <StockContainer 
