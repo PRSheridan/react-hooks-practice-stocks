@@ -1,7 +1,7 @@
 import React from "react";
 
 function Stock( {stock, onBuyStock, onSellStock, location} ) {
-
+//when the stock is clicked Buy/Sell respectively
   function handleClick(event) {
     event.preventDefault()
     if (location === "stocks") { onBuyStock(stock.id) } 

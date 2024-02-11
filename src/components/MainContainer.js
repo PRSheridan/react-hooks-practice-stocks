@@ -4,39 +4,31 @@ import PortfolioContainer from "./PortfolioContainer";
 import SearchBar from "./SearchBar";
 
 function MainContainer() {
+//initialize state variables
   const [stocks, setStocks] = useState([])
   const [portfolio, setPortfolio] = useState([])
-
+  const [sort, setSort] = useState("")
+  const [filter, setFilter] = useState("")
+//on first render, fetch stockData
   useEffect(() => {
     fetch("http://localhost:3001/stocks")
       .then((r) => r.json())
       .then((stockData) => setStocks(stockData))
   }, [])
-
-  //having two functions here is arbitrary but it's fine :,)
+ //setStock and setPortfolio respectively: filter by id (could be combined probably)
   function handleBuyStock(id) {
-    console.log("")
     const newPortfolioStock = stocks.filter((stock) => stock.id === id)
     setPortfolio([...portfolio, newPortfolioStock[0]])
     setStocks([...stocks].filter((stock) => stock.id !== id))
   }
-
   function handleSellStock(id) {
-    console.log("")
     const newStock = portfolio.filter((stock) => stock.id === id)
     setStocks([...stocks, newStock[0]])
     setPortfolio([...portfolio].filter((stock) => stock.id !== id))
   }
-
-  function handleSortChange(event) {
-    console.log(event.target.value)
-    //sort em
-  }
-
-  function handleFilterChange(event) {
-    console.log(event.target.value)
-    //filter em
-  }
+//setSort and setFilter respectively: setSort by target value
+  function handleSortChange(event) { setSort(event.target.value) }
+  function handleFilterChange(event) { setFilter(event.target.value) }
 
   return (
     <div>
@@ -47,6 +39,8 @@ function MainContainer() {
         <div className="col-8">
           <StockContainer 
               stocks={stocks} 
+              sort={sort}
+              filter={filter}
               onBuyStock={handleBuyStock}
               onSellStock={handleSellStock}/>
         </div>

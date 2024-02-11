@@ -2,7 +2,6 @@ import React from "react";
 import Stock from "./Stock";
 
 function PortfolioContainer( {portfolio, onBuyStock, onSellStock} ) {
-  console.log(portfolio)
   return (
     <div>
       <h2>My Portfolio</h2>
